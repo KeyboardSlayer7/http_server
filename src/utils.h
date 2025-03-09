@@ -1,14 +1,15 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#include <vector>
 #include <string>
 
-struct Body
-{
-    int size = 0;
-    char* contents;
-};
+// struct Content 
+// {
+//     int size = 0;
+//     std::vector<char> contents;
+// };
 
-Body get_content(const char* filename);
+std::vector<char> get_content(const char* filename);
 
 #endif 

@@ -1,12 +1,13 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <vector>
 
 #include "utils.h"
 
-Body get_content(const char* filename)
+std::vector<char> get_content(const char* filename)
 {
-    Body output;
+    std::vector<char> output;
     
     std::ifstream file = std::ifstream(filename, std::ios::binary | std::ios::in);
 
@@ -14,12 +15,13 @@ Body get_content(const char* filename)
     int size = file.tellg();
     file.seekg(0, file.beg);
     
-    output.contents = new char[size + 1];
+    // output.contents = new char[size + 1];
+    output.resize(size + 1); 
 
-    file.read(output.contents, size);
-    output.contents[size] = '\0';
+    file.read(output.data(), size);
+    output[size] = '\0';
 
-    output.size = size;
+    // output.size = size;
 
     file.close();
         

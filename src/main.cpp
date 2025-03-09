@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <chrono>
 #include <ctime>
+#include <vector>
 
 #include "utils.h"
 #include "http_parser.h"
@@ -63,9 +64,11 @@ int main(int argc, char* argv[])
             Http parsed_request = parse(message);
 
             std::string umm = parsed_request.get("path");
+            std::cout << "Path: " << umm << std::endl;
+            std::cout << pages[umm] << std::endl;
             
             std::string content_type;
-            Body body;
+            std::vector<char> body;
             
             if (pages[umm].find(".html") != std::string::npos)
             {
@@ -77,6 +80,7 @@ int main(int argc, char* argv[])
             }
 
             body = get_content(pages[umm].c_str());
+            std::cout << "Body size: " << body.size() << std::endl;
 
             std::string response;
             
@@ -85,15 +89,15 @@ int main(int argc, char* argv[])
 
             response += parsed_request.get("http_version") + " 200 OK\r\nDate: ";
             response += std::ctime(&time_now);
-            response += "Server: Http_Server v0.1\r\nContent-Length: " + std::to_string(body.size) 
+            response += "Server: Http_Server v0.1\r\nContent-Length: " + std::to_string(body.size()) 
                 + "\r\nContent-Type: " + content_type + "\r\n\r\n";
             
             std::cout << response;
 
-            int bytes_sent;
+            int bytes_sent = 0;
 
             bytes_sent += send(client, response.c_str(), response.size(), 0);
-            bytes_sent += send(client, body.contents, body.size, 0);
+            bytes_sent += send(client, body.data(), body.size(), 0);
 
             if (bytes_sent <= 0)
             {
@@ -101,7 +105,7 @@ int main(int argc, char* argv[])
                 std::cout << "[ERROR] : " << WSAGetLastError();
             }
 
-            delete[] body.contents;
+            // delete[] body.contents;
             closesocket(client);
         }
 
