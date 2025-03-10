@@ -9,9 +9,6 @@
 #include "utils.h"
 #include "http_parser.h"
 
-#define BACKLOG 1
-#define DEFAULT_BUFFER_LENGTH 8192
-
 int main(int argc, char* argv[])
 {
     WSADATA wsa_data;

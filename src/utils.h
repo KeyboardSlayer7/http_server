@@ -4,11 +4,8 @@
 #include <vector>
 #include <string>
 
-// struct Content 
-// {
-//     int size = 0;
-//     std::vector<char> contents;
-// };
+#define BACKLOG 1
+#define DEFAULT_BUFFER_LENGTH 8192
 
 std::vector<char> get_content(const char* filename);
 
