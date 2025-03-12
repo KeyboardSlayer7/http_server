@@ -74,8 +74,8 @@ void Server::run()
             int index = resource.find('.', 3);
             
             // std::cout << _content_types["content_type"] << "\n";
-            std::cout << "Resource: " << resource << "\n";
-            std::cout << "substr: " << resource.substr(index + 1, resource.size() - index) << "\n";
+            // std::cout << "Resource: " << resource << "\n";
+            // std::cout << "substr: " << resource.substr(index + 1, resource.size() - index) << "\n";
 
             content.type = _content_types["content_type"][resource.substr(index + 1, resource.size() - index)];
             content.data = get_content(resource.c_str()); 
