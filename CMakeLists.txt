@@ -20,10 +20,14 @@ set(
     src/http_parser.cpp
     src/utils.h
     src/utils.cpp
+    src/server.h
+    src/server.cpp
 )
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 add_executable(${PROJECT_NAME} ${SOURCES})
+
+target_include_directories(${PROJECT_NAME} PUBLIC ${json_SOURCE_DIR}/single_include)
 
 target_link_libraries(${PROJECT_NAME} PUBLIC ws2_32)

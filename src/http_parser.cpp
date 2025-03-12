@@ -1,6 +1,8 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <chrono>
+#include <ctime>
 
 #include "http_parser.h"
 
@@ -49,7 +51,7 @@ Http parse(std::string& message)
             
             if (index != std::string::npos)
             {
-                http.map[array[i].substr(0, index)] = array[i].substr(index + colon_space.size(), array.size() - index);
+                http.map[array[i].substr(0, index)] = array[i].substr(index + colon_space.size(), array[i].size() - index);
             }            
         }
     }
@@ -59,5 +61,5 @@ Http parse(std::string& message)
 
 std::string Http::get(std::string header)
 {
-    return map[header];
+    return map.at(header);
 }

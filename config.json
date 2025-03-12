@@ -1,0 +1,16 @@
+{
+    "content_type":
+    {
+        "html": "text/html",
+        "htm": "text/html",
+        "jpg": "image/jpeg",
+        "jpeg": "image/jpeg",
+        "png": "image/png",
+        "css": "text/css",
+        "js": "application/javascript",
+        "json": "application/json",
+        "txt": "text/plain",
+        "xml": "application/xml",
+        "mp4": "video/mp4" 
+    }
+}

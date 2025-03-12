@@ -4,6 +4,17 @@
 #include <WinSock2.h>
 #include <WS2tcpip.h>
 #include <vector>
+#include "nlohmann/json.hpp"
+
+#include "http_parser.h"
+
+using json = nlohmann::json;
+
+struct Content
+{
+    std::string type;
+    std::vector<char> data;
+};
 
 class Server
 {
@@ -18,6 +29,10 @@ private:
     SOCKET _socket;
     std::vector<char> _buffer;
     bool _running;
+    
+    json _content_types;
+
+    std::string createResponse(Http& http, Content& content);
 };
 
 #endif // SERVER_H

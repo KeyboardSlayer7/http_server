@@ -3,4 +3,6 @@
 bin
 build
 Makefile
-config.json
+image.png.gz
+nature.png
+nature.png.gz

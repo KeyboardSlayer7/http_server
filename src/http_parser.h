@@ -15,5 +15,6 @@ struct Http
 std::vector<std::string> split(std::string& message, std::string separator);
 
 Http parse(std::string& message);
+// std::string createResponse(Http& http, std::vector<char>& content);
 
 #endif
